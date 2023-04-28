@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Criptografador e Decodificador de Texto</title>
+    <style>
+      
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f2f2f2;
+      }
+
+      h1 {
+        text-align: center;
+        padding: 20px;
+        background-color: #333;
+        color: #fff;
+        margin-top: 0;
+      }
+
+      form {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      }
+
+      label {
+        display: block;
+        margin-bottom: 10px;
+        font-size: 18px;
+        font-weight: bold;
+      }
+
+      textarea {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        resize: none;
+        height: 150px;
+      }
+
+      button {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background-color: #333;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        font-size: 18px;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out;
+      }
+
+      button:hover {
+        background-color: #555;
+      }
+
+      #output {
+        margin-top: 20px;
+        font-size: 16px;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        line-height: 1.5;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Criptografador e Decodificador de Texto</h1>
+    <form>
+      <label for="input">Digite o texto:</label>
+      <textarea id="input" name="input"></textarea>
+      <button type="button" onclick="criptografado()">Criptografar</button>
+      <button type="button" onclick="descriptografado()">Descriptografar</button>
+      <p id="output"></p>
+    </form>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script>
+      var key = "mysecretkey"; 
+      var iv = "mysecretiv";
+      
+      function criptografado() {
+        var input = document.getElementById("input").value;
+        var criptografar = CryptoJS.AES.encrypt(input, key, { iv: iv }).toString();
+        document.getElementById("output").innerHTML = criptografar;
+      }
+      
+      function descriptografado() {
+        var input = document.getElementById("input").value;
+        var descriptografar = CryptoJS.AES.decrypt (input, key, { iv: iv }).toString(CryptoJS.enc.Utf8);
+        document.getElementById("output").innerHTML = descriptografar;
+      }
+    </script>
+  </body>
+</
